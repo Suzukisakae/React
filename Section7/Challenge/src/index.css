@@ -70,3 +70,56 @@ body {
 .open .title {
   color: #087f5b;
 }
+
+.title {
+  color: #495057;
+  font-size: 30px;
+  text-align: center;
+  font-weight: normal;
+  line-height: inherit;
+}
+
+/* Tip Calculate */
+.tip {
+  width: 700px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.tip-frame {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tip-text {
+  font-size: 18px;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.tip-input {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #495057;
+}
+
+.tip-select {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #495057;
+  background-color: #fff;
+}
+.tip-total {
+  font-size: 24px;
+  color: #403434;
+  margin-top: 10px;
+}
