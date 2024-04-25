@@ -108,7 +108,7 @@ body {
 }
 
 form {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   display: grid;
   align-items: center;
   gap: 1.2rem;
@@ -134,7 +134,7 @@ label {
 label::first-letter {
   display: inline-block;
   margin-right: 4px;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 input,
