@@ -54,7 +54,7 @@ const average = (arr) =>
 const KEY = "373da527";
 
 export default function App() {
-  const [query, setQuery] = useState("School Days");
+  const [query, setQuery] = useState("");
   // const [movies, setMovies] = useState(tempMovieData);
   // const [watched, setWatched] = useState(tempWatchedData);
   const [movies, setMovies] = useState([]);
@@ -112,8 +112,8 @@ export default function App() {
           setMovies(data.Search);
           setError("");
         } catch (err) {
-          console.error(err.message);
           if (err.name !== "AbortError") {
+            console.error(err.message);
             setError(err.message);
           }
         } finally {
@@ -126,6 +126,7 @@ export default function App() {
         return;
       }
 
+      handleCloseMovie();
       fetchMovies();
 
       // Cleanup
@@ -330,6 +331,21 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
+  );
 
   useEffect(
     function () {
