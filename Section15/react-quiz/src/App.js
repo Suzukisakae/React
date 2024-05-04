@@ -1,14 +1,17 @@
 import React, { useEffect, useReducer } from "react";
-import Header from "./Header";
-import Main from "./Main";
-import Loader from "./Loader";
-import Error from "./Error";
-import StartScreen from "./StartScreen";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Loader from "./components/Loader";
+import Error from "./components/Error";
+import StartScreen from "./components/StartScreen";
+import Question from "./components/Question";
+import { type } from "@testing-library/user-event/dist/type";
 
 const initialState = {
   questions: [],
   // 'loading', 'ready', 'error', 'active', 'inactive',...
   status: "loading",
+  index: 0,
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -23,13 +26,21 @@ function reducer(state, action) {
         ...state,
         status: "error",
       };
+    case "start":
+      return {
+        ...state,
+        status: "active",
+      };
     default:
       throw new Error(`Unrecognized action: ${action.type}`);
   }
 }
 
 function App() {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   const numberOfQuestions = questions.length;
   useEffect(function () {
     fetch("http://localhost:8000/questions")
@@ -44,8 +55,12 @@ function App() {
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
         {status === "ready" && (
-          <StartScreen numberOfQuestions={numberOfQuestions} />
+          <StartScreen
+            numberOfQuestions={numberOfQuestions}
+            dispatch={dispatch}
+          />
         )}
+        {status === "active" && <Question question={questions[index]} />}
       </Main>
     </div>
   );
