@@ -1,4 +1,4 @@
-function Finish({ points, maxPossiblePoints, highscore }) {
+function Finish({ points, maxPossiblePoints, highscore, dispatch }) {
   const percentage = Math.round((points / maxPossiblePoints) * 100, 2);
   let emoji;
   if (percentage === 100) {
@@ -18,6 +18,12 @@ function Finish({ points, maxPossiblePoints, highscore }) {
         points. That's {percentage}%.
       </p>
       <p className="highscore">Highscore: {highscore}</p>
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "restart" })}
+      >
+        Restart
+      </button>
     </>
   );
 }
